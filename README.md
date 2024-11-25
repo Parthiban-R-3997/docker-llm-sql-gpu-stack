@@ -97,7 +97,7 @@ This repository contains a Docker-based setup for running a Streamlit applicatio
 
 ## Running the Application
 
-### Method : Using Command Line
+### Method : Using Command Line (From the current working directory)
 ```bash
 docker-compose up
 ```
