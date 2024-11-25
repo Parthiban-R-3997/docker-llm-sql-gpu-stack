@@ -102,18 +102,76 @@ This repository contains a Docker-based setup for running a Streamlit applicatio
 docker-compose up
 ```
 
-## Model Setup and Usage
+## Container Management
 
-### Using .GGUF Models
-1. For using local .GGUF models, you need to mount the model file when running the container:
+### Stopping Running Containers
+
+Before setting up .GGUF models, you should stop any running streamlit containers to prevent conflicts:
+
+1. List running containers:
    ```bash
-   docker run --gpus all -v <fully qualified path to .gguf>:/app/models/model.gguf -p 8501:8501 <REPOSITORY>
+   docker ps
    ```
 
-   Example:
+2. Stop Streamlit container:
    ```bash
-   docker run --gpus all -v G:\chatdb_llm\natural-sql-7b.Q4_K_M.gguf:/app/models/model.gguf -p 8501:8501 parthi97/llm-sql-gpu:latest
+   docker stop <STREAMLIT_CONTAINER_ID>
    ```
+
+
+
+### Example Workflow
+
+Here's a step-by-step example of stopping containers and setting up a .GGUF model:
+
+1. List running containers:
+   ```bash
+   # This will show container IDs and names
+   docker ps
+   ```
+   Example output:
+   ```
+   CONTAINER ID   IMAGE                           NAMES
+   a1b2c3d4e5f6   parthi97/llm-sql-gpu:latest     chatdb_streamlit
+   ```
+
+2. Stop the containers:
+   ```bash
+   # Replace with your actual container IDs
+   docker stop a1b2c3d4e5f6  # Streamlit container
+   ```
+
+## .GGUF Model Setup
+
+### Mounting .GGUF Models
+
+To use a local .GGUF model:
+
+1. Prepare your .GGUF file:
+   - Ensure the model is in an accessible location
+   - Use the full, absolute path to the model file
+
+2. Run the container with model mounting:
+   ```bash
+   docker run --gpus all \
+     -v <FULL_PATH_TO_GGUF_MODEL>:/app/models/model.gguf \
+     -p 8501:8501 \
+     parthi97/llm-sql-gpu:latest
+   ```
+
+### Real-World Example
+
+For Windows users with a model in `G:\chatdb_llm\models\`:
+
+```bash
+# Example with a specific model
+docker run --gpus all \
+  -v G:\chatdb_llm\models\natural-sql-7b.Q4_K_M.gguf:/app/models/model.gguf \
+  -p 8501:8501 \
+  parthi97/llm-sql-gpu:latest
+```
+
+
 
 2. In the Streamlit UI:
    - Under "Model Path" input field, enter: `/app/models/model.gguf`
