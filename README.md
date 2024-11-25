@@ -212,9 +212,3 @@ docker-compose down -v     # Stop containers and remove volumes
 - Minimum 3GB GPU Memory
 - Approximately 10GB Disk Space for images
 - NVIDIA GPU with CUDA support
-
-## License
-[Your License Information Here]
-
-## Contact
-[Your Contact Information Here]
