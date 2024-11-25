@@ -97,13 +97,7 @@ This repository contains a Docker-based setup for running a Streamlit applicatio
 
 ## Running the Application
 
-### Method 1: Using Docker Desktop
-1. Open Docker Desktop
-2. Navigate to the "Containers" tab
-3. Click "Create container" or use UI to upload docker-compose.yml
-4. Start both services
-
-### Method 2: Using Command Line
+### Method : Using Command Line
 ```bash
 docker-compose up
 ```
