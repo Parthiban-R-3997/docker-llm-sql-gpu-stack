@@ -107,7 +107,7 @@ docker-compose up
 ### Using .GGUF Models
 1. For using local .GGUF models, you need to mount the model file when running the container:
    ```bash
-   docker run --gpus all -v <fully qualified path to .gguf>:/app/models/model.gguf -p 8501:8501 parthi97/llm-sql-gpu:latest
+   docker run --gpus all -v <fully qualified path to .gguf>:/app/models/model.gguf -p 8501:8501 <REPOSITORY>
    ```
 
    Example:
